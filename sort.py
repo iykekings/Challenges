@@ -58,3 +58,15 @@ def merge_sort(list: List):
 test = [[9, 1, 10, 2], [5, 1, 1], [1], [], [2, 1], [1, 2]]
 result = map(lambda x: merge_sort(x), test)
 print(list(result))
+
+
+def insertionSort2(arr):
+    cost = 0
+    for i in range(len(arr)):
+        for j in range(len(arr)):
+            if (arr[j] > arr[j + 1]):
+                cost += abs(arr[j] > arr[j + 1])
+                temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+    return cost
