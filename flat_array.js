@@ -1,15 +1,18 @@
-const flat = array => {
-  let collector = [];
+// flat recursively flattens an array
+function flat(array) {
+  let result = [];
   if (!(array instanceof Array)) {
     throw new Error('Not an array');
   }
+
   for (let elem of array) {
     if (elem instanceof Array) {
-      collector = [...collector, ...flat(elem)];
+      result = [...result, ...flat(elem)];
     } else {
-      collector = [...collector, elem];
+      result = [...result, elem];
     }
   }
-  return collector;
-};
+  return result;
+}
+
 module.exports = flat;
