@@ -1,4 +1,4 @@
-function assertEq(left, right, info = '') {
+function assertEq<T>(left: T, right: T, info = "") {
   if (String(left) !== String(right)) {
     console.error(`Test Failed ❗️:
     Expected => 
@@ -9,7 +9,7 @@ function assertEq(left, right, info = '') {
     console.log(`Test: ${info} Passed`);
   }
 }
-function assertDeepEqual(left, right, info = '') {
+function assertDeepEqual<T>(left: T[], right: T[], info = "") {
   if (!left.every((e, i) => e === right[i])) {
     console.error(`Test Failed:
     Expected =>  ${right}
@@ -18,7 +18,7 @@ function assertDeepEqual(left, right, info = '') {
     console.log(`\n${info}: Passed ✅\n`);
   }
 }
-function shouldThrow(cb, info = '') {
+function shouldThrow(cb: () => void, info = "") {
   let hasthrown = false;
   try {
     cb();
@@ -32,4 +32,4 @@ function shouldThrow(cb, info = '') {
   }
 }
 
-export  { assertEq, assertDeepEqual, shouldThrow };
+export { assertEq, assertDeepEqual, shouldThrow };

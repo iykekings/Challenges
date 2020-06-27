@@ -3,12 +3,10 @@ import { assertEq } from "./deno_test.ts";
 function processData(input: string) {
   const lines = input.split("\n").slice(1);
   return lines
-    .filter(line =>
-      line.includes("href")
-    )
-    .map(line =>
+    .filter((line) => line.includes("href"))
+    .map((line) =>
       line
-        .match(/href=\"(.*?)\"[^>]*>(.*?)</)
+        .match(/href=\"(.*?)\"[^>]*>(.*?)</)!
         .slice(1)
         .join(",")
     )
@@ -20,9 +18,8 @@ assertEq(
 <p><a href="http://www.quackit.com/html/tutorial/html_links.cfm">Example Link</a></p>
 <div class="more-info"><a href="http://www.quackit.com/html/examples/html_links_examples.cfm">More Link Examples...</a></div>`),
   `http://www.quackit.com/html/tutorial/html_links.cfm,Example Link
-http://www.quackit.com/html/examples/html_links_examples.cfm,More Link Examples...`
+http://www.quackit.com/html/examples/html_links_examples.cfm,More Link Examples...`,
 );
-
 
 assertEq(
   processData(`13
@@ -44,5 +41,5 @@ assertEq(
 /wiki/Portal:Featured_content,Featured content
 /wiki/Portal:Current_events,Current events
 /wiki/Special:Random,Random article
-//donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&utm_medium=sidebar&utm_campaign=C13_en.wikipedia.org&uselang=en,Donate to Wikipedia `
-)
+//donate.wikimedia.org/wiki/Special:FundraiserRedirector?utm_source=donate&utm_medium=sidebar&utm_campaign=C13_en.wikipedia.org&uselang=en,Donate to Wikipedia `,
+);
