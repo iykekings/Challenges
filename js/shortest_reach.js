@@ -1,3 +1,4 @@
+const { readFileSync } = require('fs');
 // Possible optimization step
 
 // lazily find all path to all nodes once
@@ -86,3 +87,18 @@ console.log(
     1
   )
 );
+
+const file = readFileSync('shortest_reach.txt', 'utf-8').split('\n');
+const s = parseInt(file.slice(-1)[0], 10);
+const [n, m] = file
+  .slice(1, 2)[0]
+  .split(/\s+/)
+  .map((d) => parseInt(d, 10));
+const data = file
+  .slice(2, -1)
+  .map((s) => s.split(/\s+/).map((d) => parseInt(d, 10)));
+console.time('Start');
+const result = bfs(n, m, data, s);
+console.timeEnd('Start');
+
+console.log(result);
